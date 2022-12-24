@@ -47,3 +47,4 @@ pipeline:
                     image: plugins/github-actions
                     settings:
                       uses: gradle/wrapper-validation-action@v1
+  allowStageExecutions: true
