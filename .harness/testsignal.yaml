@@ -57,4 +57,11 @@ pipeline:
                   when:
                     stageStatus: All
                   failureStrategies: []
+              - step:
+                  type: Run
+                  name: Build with Gradle
+                  identifier: Build_with_Gradle
+                  spec:
+                    shell: Sh
+                    command: ./gradlew qa
   allowStageExecutions: true
