@@ -67,4 +67,17 @@ pipeline:
                   when:
                     stageStatus: All
                   failureStrategies: []
+              - step:
+                  type: Plugin
+                  name: Archive reports for failed build
+                  identifier: Archive_reports_for_failed_build
+                  spec:
+                    connectorRef: DhrubajyotiDocker
+                    image: plugins/github-actions
+                    settings:
+                      uses: actions/upload-artifact@v3
+                  when:
+                    stageStatus: Success
+                    condition: <+pipeline.stages.cond.spec.execution.steps.echo.status> == "SUCCEEDED"
+                  failureStrategies: []
   allowStageExecutions: true
