@@ -28,15 +28,6 @@ pipeline:
             steps:
               - step:
                   type: Plugin
-                  name: Validate Gradle Wrapper
-                  identifier: Validate_Gradle_Wrapper
-                  spec:
-                    connectorRef: DhrubajyotiDocker
-                    image: plugins/github-actions
-                    settings:
-                      uses: gradle/wrapper-validation-action@v1
-              - step:
-                  type: Plugin
                   name: set up JDK 11
                   identifier: set_up_JDK_11
                   spec:
@@ -47,3 +38,12 @@ pipeline:
                       with:
                         distribution: temurin
                         java-version: 11
+              - step:
+                  type: Plugin
+                  name: Validate Gradle Wrapper
+                  identifier: Validate_Gradle_Wrapper
+                  spec:
+                    connectorRef: DhrubajyotiDocker
+                    image: plugins/github-actions
+                    settings:
+                      uses: gradle/wrapper-validation-action@v1
