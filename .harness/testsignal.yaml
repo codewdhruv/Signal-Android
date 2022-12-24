@@ -45,7 +45,5 @@ pipeline:
                     settings:
                       uses: actions/setup-java@v3
                       with:
-                        repository: my-org/my-private-tools
-                        path: my-tools
-                        ref: ${{ GitHub.event.pull_request.head.sha }}
-                    event_payload: <+ trigger.eventPayload>
+                        distribution: temurin
+                        java-version: 11
