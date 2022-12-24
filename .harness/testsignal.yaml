@@ -81,6 +81,6 @@ pipeline:
                         path: "*/build/reports"
                   when:
                     stageStatus: Success
-                    condition: <+pipeline.stages.cond.spec.execution.steps.echo.status> == "SUCCEEDED"
+                    condition: <+pipeline.stages.cond.spec.execution.steps.echo.status> == "FAILED"
                   failureStrategies: []
   allowStageExecutions: true
