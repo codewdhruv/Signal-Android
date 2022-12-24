@@ -64,4 +64,7 @@ pipeline:
                   spec:
                     shell: Sh
                     command: ./gradlew qa
+                  when:
+                    stageStatus: All
+                  failureStrategies: []
   allowStageExecutions: true
