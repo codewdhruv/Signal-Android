@@ -1,0 +1,14 @@
+inputSet:
+  identifier: "inputset"
+  name: "inputset"
+  orgIdentifier: "default"
+  projectIdentifier: "DhrubaCI"
+  pipeline:
+    identifier: "testsignal"
+    properties:
+      ci:
+        codebase:
+          build:
+            type: "branch"
+            spec:
+              branch: "<+trigger.branch>"
