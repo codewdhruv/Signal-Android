@@ -83,4 +83,33 @@ pipeline:
                     stageStatus: Success
                     condition: <+pipeline.stages.cond.spec.execution.steps.echo.status> == "FAILED"
                   failureStrategies: []
+    - stage:
+        name: docker
+        identifier: docker
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Build image
+                  identifier: Build_image
+                  spec:
+                    shell: Sh
+                    command: cd reproducible-builds && docker build -t signal-android . && cd ..
+              - step:
+                  type: Run
+                  name: Test build
+                  identifier: Test_build
+                  spec:
+                    shell: Sh
+                    command: docker run --rm -v $(pwd):/project -w /project signal-android ./gradlew clean assemblePlayProdRelease
   allowStageExecutions: true
