@@ -56,21 +56,11 @@ pipeline:
             steps:
               - step:
                   type: Run
-                  name: validate gradle wrapper
+                  name: Validate Gradle Wrapper
                   identifier: validate_gradle_wrapper
                   spec:
                     shell: Sh
                     command: ./gradlew wrapper
-              - step:
-                  type: Run
-                  name: Remove Android 31
-                  identifier: Remove_Android_31
-                  spec:
-                    shell: Sh
-                    command: $ANDROID_HOME/tools/bin/sdkmanager --uninstall "platforms;android-31"
-                  when:
-                    stageStatus: All
-                  failureStrategies: []
               - step:
                   type: Run
                   name: Build with Gradle
