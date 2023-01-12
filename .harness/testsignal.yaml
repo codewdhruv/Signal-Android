@@ -67,17 +67,12 @@ pipeline:
                         distribution: temurin
                         java-version: 11
               - step:
-                  type: Plugin
-                  name: Validate Gradle Wrapper
-                  identifier: Validate_Gradle_Wrapper
+                  type: Run
+                  name: validate gradle wrapper
+                  identifier: validate_gradle_wrapper
                   spec:
-                    connectorRef: DhrubajyotiDocker
-                    image: plugins/github-actions
-                    settings:
-                      uses: gradle/wrapper-validation-action@v1
-                  when:
-                    stageStatus: All
-                  failureStrategies: []
+                    shell: Sh
+                    command: ./gradlew wrapper
               - step:
                   type: Run
                   name: Remove Android 31
@@ -97,21 +92,5 @@ pipeline:
                     command: ./gradlew qa
                   when:
                     stageStatus: All
-                  failureStrategies: []
-              - step:
-                  type: Plugin
-                  name: Archive reports for failed build
-                  identifier: Archive_reports_for_failed_build
-                  spec:
-                    connectorRef: DhrubajyotiDocker
-                    image: plugins/github-actions
-                    settings:
-                      uses: actions/upload-artifact@v3
-                      with:
-                        name: reports
-                        path: "*/build/reports"
-                  when:
-                    stageStatus: Success
-                    condition: <+pipeline.stages.cond.spec.execution.steps.echo.status> == "FAILED"
                   failureStrategies: []
   allowStageExecutions: true
