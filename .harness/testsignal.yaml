@@ -55,18 +55,6 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: Plugin
-                  name: set up JDK 11
-                  identifier: set_up_JDK_11
-                  spec:
-                    connectorRef: DhrubajyotiDocker
-                    image: plugins/github-actions
-                    settings:
-                      uses: actions/setup-java@v3
-                      with:
-                        distribution: temurin
-                        java-version: 11
-              - step:
                   type: Run
                   name: validate gradle wrapper
                   identifier: validate_gradle_wrapper
